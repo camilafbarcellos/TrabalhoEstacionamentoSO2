@@ -1,8 +1,9 @@
 package monitores_semaforos;
 
-/**Classe da thread do tipo Carro responsável por ocupar o objeto vaga
- * @author 20202PF.CC0003
- * @version 1
+/**Classe da thread do tipo Carro, responsável por ocupar o objeto vaga
+ * @author Bernardo Dirceu Tomasi
+ * @author Camila Florão Barcellos
+ * @version 1.0
  * @since Release 01 da aplicação
  */
 public class Carro extends Thread {
