@@ -1,15 +1,14 @@
 package monitores_semaforos;
 
-/**
- *
- * @author 20202PF.CC0003
+/**Classe para objetos do tipo vaga, responsável por registrar a relação vaga-carro
+ * @author Bernardo Dirceu Tomasi
+ * @author Camila Florão Barcellos
+ * @version 1.0
+ * @since Release 01 da aplicação
  */
 public class Vaga {
 
-    //nome da vaga ex.: v1, v2, v3
     private Integer numero;
-    
-    //carro que estara ocupando a vaga, incialmente nulo = vaga vazia
     private Carro carro = null;
 
     public Vaga(Integer numero) {
