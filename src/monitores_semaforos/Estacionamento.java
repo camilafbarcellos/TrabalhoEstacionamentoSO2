@@ -9,12 +9,15 @@ package monitores_semaforos;
 public class Estacionamento {
 
     private int quant_vagas;
+    private Atendente atendente;
     
     /**Método construtor que define a quantidade total de vagas do estacionamento
      * @author Camila Florão Barcellos
+     * @param atendente Atendente - Atendente que irá comandar a ocupação de vagas
      */
-    public Estacionamento() {
+    public Estacionamento(Atendente atendente) {
         this.quant_vagas = 12; // vagas totais
+        this.atendente = atendente;
     }
 
     /**Método de retorno da quantidade de vagas
@@ -29,6 +32,20 @@ public class Estacionamento {
      */
     public void setQuant_vagas(int quant_vagas) {
         this.quant_vagas = quant_vagas;
+    }
+    
+    /**Método de retorno do atendente
+     * @return atendente - Atendente responsável pelo estacionamento
+     */
+    public Atendente getAtendente() {
+        return atendente;
+    }
+
+    /**Método de atribuição do atendente
+     * @param atendente Atendente - - Atendente responsável pelo estacionamento
+     */
+    public void setAtendente(Atendente atendente) {
+        this.atendente = atendente;
     }
     
     /**Método de diminuição da quantidade de vagas para indicar ocupação
@@ -81,7 +98,7 @@ public class Estacionamento {
             notifyAll(); // notifica as threads
             if(vaga.getQuant_vagas() == 12) {
                 System.out.println("\n-- ESTACIONAMENTO VAZIO! --\n");
-                //atendente.setTrabalhando(false);
+                atendente.setTrabalhando(false);
             }
         } catch(Exception e) {
             e.printStackTrace();

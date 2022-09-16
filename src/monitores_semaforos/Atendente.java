@@ -59,14 +59,14 @@ public class Atendente extends Thread {
     /**
      * @return the trabalhando
      */
-    public Boolean getTrabalho() {
+    public Boolean getTrabalhando() {
         return trabalhando;
     }
 
     /**
      * @param trabalhando the trabalhando to set
      */
-    public void setTrabalho(Boolean trabalhando) {
+    public void setTrabalhando(Boolean trabalhando) {
         this.trabalhando = trabalhando;
     }
 

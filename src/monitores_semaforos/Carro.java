@@ -51,12 +51,17 @@ public class Carro extends Thread {
         this.vaga_ocupada = vaga_ocupada;
     }
     
-    /**Método de execução da thread para ocupar e desocupar uma vaga
+
+    /**Método de execução da thread para ocupação/desocupação do estacionamento
      * @author Camila Florão Barcellos
      */
     public void run() {
         try {
-            estacionamento.ocupar(estacionamento, this);
+            System.out.println("-> Carro"+this.getName()+" chegou ao estacionamento");
+            while(estacionamento.getAtendente().getOcupado()) {
+                wait();
+            }
+            estacionamento.getAtendente().chamarAtendente(estacionamento, this);
             sleep((long) (Math.random() * 5000));
             estacionamento.desocupar(estacionamento, this);
         } catch(Exception e) {
