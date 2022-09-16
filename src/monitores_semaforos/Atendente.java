@@ -14,7 +14,7 @@ public class Atendente extends Thread {
 
     /**Método construtor que define a variável trabalhando como 'false'
      * @author Bernardo Dirceu Tomasi
-     * @param placa String - Placa do carro
+     * @param trabalhando Boolean - Indica estado do atendente
      */
     public Atendente() {
         trabalhando = false;
@@ -22,9 +22,9 @@ public class Atendente extends Thread {
 
     /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
      * para estabelecer a relação de ocupação de uma vaga
-     * @param carro
+     * @param carro Carro - Indica qual carro está fazendo o pedido
      */
-    public synchronized void comunicaOcupar(Carro carro) throws InterruptedException {
+    public synchronized void comunicaOcupar(Carro carro) {
         try {
             this.carro = carro;
 
@@ -44,7 +44,7 @@ public class Atendente extends Thread {
 
     /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
      * para estabelecer a relação de desocupação de uma vaga
-     * @param carro
+     * @param carro - Indica qual carro está fazendo o pedido
      */
     public synchronized void comunicaDesocupar(Carro carro){
         try {
