@@ -8,9 +8,12 @@ package monitores_semaforos;
  */
 public class Atendente extends Thread {
 
-    private Estacionamento vaga;
-    private Carro carro;
+    //private Estacionamento vaga;
+    //private Carro carro;
     private Boolean trabalhando;
+    private Boolean ocupado;
+    private String nome;
+    private Boolean recebendo;
 
     /**Método construtor que define a variável trabalhando como 'false'
      * @author Bernardo Dirceu Tomasi
@@ -18,15 +21,18 @@ public class Atendente extends Thread {
      */
     public Atendente() {
         trabalhando = false;
+        nome = "Bartolomeu";
+        recebendo = false;
+        ocupado = false;
     }
 
     /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
      * para estabelecer a relação de ocupação de uma vaga
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
-    public synchronized void comunicaOcupar(Carro carro) {
+    public synchronized void chamarAtendente(Estacionamento estacionamento, Carro carro) {
         try {
-            this.carro = carro;
+            //this.carro = carro;
 
             /*
         Se for o primeiro carro a entrar ou se por ventura o estacionamento ficou vazio e o atendente dormiu, será
@@ -36,38 +42,18 @@ public class Atendente extends Thread {
                 trabalhando = true;
                 System.out.println("\nAtendente TRABALHANDO\n");
             }
-            vaga.ocupar(carro);
+            
+            setOcupado((Boolean) true);
+            notifyAll();
+            
+            estacionamento.ocupar(estacionamento, carro);
+            
+            setOcupado((Boolean) false);
+            notifyAll();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
-     * para estabelecer a relação de desocupação de uma vaga
-     * @param carro - Indica qual carro está fazendo o pedido
-     */
-    public synchronized void comunicaDesocupar(Carro carro){
-        try {
-            this.carro = carro;
-
-            vaga.devolver(carro);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * @return the carro
-     */
-    public Carro getCarro() {
-        return carro;
-    }
-
-    /**
-     * @param carro the carro to set
-     */
-    public void setCarro(Carro carro) {
-        this.carro = carro;
     }
 
     /**
@@ -85,16 +71,45 @@ public class Atendente extends Thread {
     }
 
     /**
-     * @return the vaga
+     * @return the ocupado
      */
-    public Estacionamento getVaga() {
-        return vaga;
+    public Boolean getOcupado() {
+        return ocupado;
     }
 
     /**
-     * @param vaga the vaga to set
+     * @param ocupado the ocupado to set
      */
-    public void setVaga(Estacionamento vaga) {
-        this.vaga = vaga;
+    public void setOcupado(Boolean ocupado) {
+        this.ocupado = ocupado;
     }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the recebendo
+     */
+    public Boolean getRecebendo() {
+        return recebendo;
+    }
+
+    /**
+     * @param recebendo the recebendo to set
+     */
+    public void setRecebendo(Boolean recebendo) {
+        this.recebendo = recebendo;
+    }
+
 }
