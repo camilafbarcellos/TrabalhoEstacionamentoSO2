@@ -1,6 +1,6 @@
 package monitores_semaforos;
 
-/**A Classe Atendente realizá o papel de intermediario entre as Threand Carro e Vaga
+/**A Classe Atendente realizá o papel de intermediario entre as Threand Carro e Estacionamento
  * @author Bernardo Dirceu Tomasi
  * @author Camila Florão Barcellos
  * @version 1.0
@@ -8,7 +8,7 @@ package monitores_semaforos;
  */
 public class Atendente extends Thread {
 
-    private Vaga vaga;
+    private Estacionamento vaga;
     private Carro carro;
     private Boolean trabalhando;
 
@@ -87,14 +87,14 @@ public class Atendente extends Thread {
     /**
      * @return the vaga
      */
-    public Vaga getVaga() {
+    public Estacionamento getVaga() {
         return vaga;
     }
 
     /**
      * @param vaga the vaga to set
      */
-    public void setVaga(Vaga vaga) {
+    public void setVaga(Estacionamento vaga) {
         this.vaga = vaga;
     }
 }
