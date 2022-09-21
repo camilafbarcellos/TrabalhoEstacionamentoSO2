@@ -15,12 +15,11 @@ public class Carro extends Thread {
      * @author Camila Florão Barcellos
      * @param placa String - Placa do carro
      * @param estacionamento Estacionamento - Estacionamento que irá ocupar
-     * @param vaga int - Vaga que irá ocupar
      */
-    public Carro(String placa, Estacionamento estacionamento, int vaga) {
+    public Carro(String placa, Estacionamento estacionamento) {
         super(placa);
         this.estacionamento = estacionamento;
-        this.vaga_ocupada = vaga;
+        this.vaga_ocupada = -1;
     }
     
     /**Método de retorno do estacionamento do carro
@@ -61,9 +60,17 @@ public class Carro extends Thread {
             while(estacionamento.getAtendente().getOcupado()) {
                 wait();
             }
+            
             estacionamento.getAtendente().chamarAtendente(estacionamento, this);
-            sleep((long) (Math.random() * 5000));
-            estacionamento.desocupar(estacionamento, this);
+            
+            if (vaga_ocupada != (-100)) {
+                while (estacionamento.getAtendente().getOcupado()) {
+                    wait();
+                }
+                sleep((long) (Math.random() * 10000));
+                estacionamento.getAtendente().chamarAtendenteDesocupar(estacionamento, this);
+            }
+            
         } catch(Exception e) {
             e.printStackTrace();
         }

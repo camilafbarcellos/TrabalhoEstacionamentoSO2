@@ -8,6 +8,10 @@ package monitores_semaforos;
  */
 public class Estacionamento {
 
+    private Boolean vag[] = new Boolean[12];
+
+    int i = 0;
+    
     private int quant_vagas;
     private Atendente atendente;
     
@@ -18,6 +22,10 @@ public class Estacionamento {
     public Estacionamento(Atendente atendente) {
         this.quant_vagas = 12; // vagas totais
         this.atendente = atendente;
+        
+        for (i = 0; i < 12; i++) {
+            vag[i] = false;
+        }
     }
 
     /**Método de retorno da quantidade de vagas
@@ -48,20 +56,18 @@ public class Estacionamento {
         this.atendente = atendente;
     }
     
-    /**Método de diminuição da quantidade de vagas para indicar ocupação
-     * @author Camila Florão Barcellos
-     * @return quant_vagas - Quantidade atualizada de vagas
+    /**
+     * @return the vag
      */
-    public int diminuirVagas() {
-        return this.quant_vagas = quant_vagas - 1;
+    public Boolean[] getVag() {
+        return vag;
     }
-    
-    /**Método de aumento da quantidade de vagas para indicar desocupação
-     * @author Camila Florão Barcellos
-     * @return quant_vagas - Quantidade atualizada de vagas
+
+    /**
+     * @param vag the vag to set
      */
-    public int aumentarVagas() {
-        return this.quant_vagas = quant_vagas + 1;
+    public void setVag(Boolean[] vag) {
+        this.vag = vag;
     }
     
     /**Método sicronizado para o carro ocupar uma vaga no estacionamento
@@ -71,14 +77,30 @@ public class Estacionamento {
      */
     public synchronized void ocupar(Estacionamento vaga, Carro carro) {
         try {
-            if(vaga.getQuant_vagas() == 0) {
-                System.out.println("\n-- ESTACIONAMENTO CHEIO! --\n"+
-                        "-> Carro "+carro.getName()+" indo embora...");
-                Thread.currentThread().interrupt();
+            for (i = 0; i < 12; i++) {
+                if (vaga.vag[i] == false) {
+
+                    vaga.quant_vagas = vaga.quant_vagas - 1;
+                    
+                    carro.setVaga_ocupada(i);
+                    
+                    System.out.println("-> Carro " + carro.getName() 
+                            + " ocupou a vaga " + carro.getVaga_ocupada()
+                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --");
+
+                    //vaga.diminuirVagas();
+
+                    this.vag[i] = true;
+
+                    return;
+                } else if (i == 11 && vaga.vag[11] == true) {
+                    System.out.println("\n-- ESTACIONAMENTO CHEIO! --\n"
+                            + "-> Carro " + carro.getName() + " indo EMBORA...\n\n");
+
+                    carro.setVaga_ocupada(-100);
+                    //Thread.currentThread().interrupt();
+                }
             }
-            carro.setVaga_ocupada(quant_vagas);
-            System.out.println("-> Carro"+carro.getName()+" ocupou a vaga "+carro.getVaga_ocupada());
-            vaga.diminuirVagas(); // vaga--
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -91,15 +113,36 @@ public class Estacionamento {
      */
     public synchronized void desocupar(Estacionamento vaga, Carro carro) {
         try {
-            System.out.println("-> Carro"+carro.getName()+" desocupou a vaga "+carro.getVaga_ocupada());
-            carro.setVaga_ocupada(-1); // indica que não ocupa nenhuma vaga pois saiu
-            Thread.currentThread().interrupt();
-            vaga.aumentarVagas(); // vaga++
-            notifyAll(); // notifica as threads
-            if(vaga.getQuant_vagas() == 12) {
+            for (i = 0; i < 12; i++) {
+                if (carro.getVaga_ocupada() == i) {
+
+                    //vaga.aumentarVagas();
+                    vaga.quant_vagas = vaga.quant_vagas + 1;
+
+                    System.out.println("\n-> Carro " + carro.getName()
+                            + " desocupou a vaga " + carro.getVaga_ocupada()
+                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --");
+
+                    carro.setVaga_ocupada(-10);
+                    //Thread.currentThread().interrupt();
+                    
+                    System.out.println("\n");
+                    
+                    this.vag[i] = false;
+                }
+            }
+
+            if (vaga.getQuant_vagas() == 12) {
                 System.out.println("\n-- ESTACIONAMENTO VAZIO! --\n");
                 atendente.setTrabalhando(false);
+                atendente.setRecebendo(false);
+                System.out.println("\n-- STATUS DO ATENDENTE --"
+                        + "\nTrabalhando: " + atendente.getTrabalhando()
+                        + "\nRecebendo: " + atendente.getRecebendo()
+                        + "\n");
             }
+
+            notifyAll(); // notifica as threads
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -24,6 +24,12 @@ public class Atendente extends Thread {
         nome = "Bartolomeu";
         recebendo = false;
         ocupado = false;
+        
+        System.out.println("\n-- STATUS DO ATENDENTE --"
+                        + "\nNome: " + nome
+                        + "\nTrabalhando: " + trabalhando
+                        + "\nRecebendo: " + recebendo
+                        + "\n");
     }
 
     /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
@@ -40,7 +46,12 @@ public class Atendente extends Thread {
              */
             if (trabalhando == false) {
                 trabalhando = true;
-                System.out.println("\nAtendente TRABALHANDO\n");
+                recebendo = true;
+                System.out.println("\n-- STATUS DO ATENDENTE --"
+                        + "\nNome: " + nome
+                        + "\nTrabalhando: " + trabalhando
+                        + "\nRecebendo: " + recebendo
+                        + "\n");
             }
             
             setOcupado((Boolean) true);
@@ -51,6 +62,22 @@ public class Atendente extends Thread {
             setOcupado((Boolean) false);
             notifyAll();
             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public synchronized void chamarAtendenteDesocupar(Estacionamento estacionamento, Carro carro) {
+        try {
+
+            setOcupado((Boolean) true);
+            notifyAll();
+
+            estacionamento.desocupar(estacionamento, carro);
+
+            setOcupado((Boolean) false);
+            notifyAll();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
