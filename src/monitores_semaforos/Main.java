@@ -2,16 +2,17 @@ package monitores_semaforos;
 
 import java.util.Random;
 
-/**
- * Classe de execução do estacionamento
- *
+/**Classe principal de execução do estacionamento
  * @author Bernardo Dirceu Tomasi
  * @author Camila Florão Barcellos
- * @version 1.0
- * @since Release 01 da aplicação
  */
 public class Main {
 
+    /**Método principal de execução do sistema de estacionamento utilizando
+     * monitores/semáforos
+     * @param args - Bloco de comandos
+     * @throws Exception - Tratamento de exceção
+     */
     public static void main(String[] args) throws Exception {
 
         //Cria e inicializa a thread atendente
@@ -34,7 +35,7 @@ public class Main {
         String placa;
         int vaga = 0;
 
-        //Gera 23 carros
+        //Gera 50 carros
         for (int i = 0; i < 50; i++) {
 
             //Número da placa
@@ -54,6 +55,11 @@ public class Main {
 
             //Garante a não sobeposição entre as threads carros
             if (i == 20) {
+                /*
+                    Pausa a geração por um tempo maior para demonstrar o comportamento
+                    do atendente em um contexto de estacionamento vazio com o sistema
+                    ainda em execução
+                */
                 Thread.sleep(15000);
             } else {
                 Thread.sleep(300);

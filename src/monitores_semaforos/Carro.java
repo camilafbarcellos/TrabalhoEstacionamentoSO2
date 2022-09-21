@@ -3,15 +3,15 @@ package monitores_semaforos;
 /**Classe da thread do tipo Carro, responsável por ocupar vaga 
  * @author Bernardo Dirceu Tomasi
  * @author Camila Florão Barcellos
- * @version 1.0
- * @since Release 01 da aplicação
  */
 public class Carro extends Thread {
     
-    private int vaga_ocupada = -1;
+    private int vaga_ocupada;
     private Estacionamento estacionamento;
 
-    /**Método construtor para receber a placa, a vaga e o estacionamento do carro
+    /**Método construtor para receber a placa e o estacionamento, definindo
+     * a vaga em -100 como valor simbólico inexistente
+     * @author Bernardo Dirceu Tomasi
      * @author Camila Florão Barcellos
      * @param placa String - Placa do carro
      * @param estacionamento Estacionamento - Estacionamento que irá ocupar
@@ -19,7 +19,7 @@ public class Carro extends Thread {
     public Carro(String placa, Estacionamento estacionamento) {
         super(placa);
         this.estacionamento = estacionamento;
-        this.vaga_ocupada = -1;
+        this.vaga_ocupada = -100;
     }
     
     /**Método de retorno do estacionamento do carro
@@ -50,13 +50,14 @@ public class Carro extends Thread {
         this.vaga_ocupada = vaga_ocupada;
     }
     
-
-    /**Método de execução da thread para ocupação/desocupação do estacionamento
+    /**Método de execução da thread para realizar a ocupação e a desocupação 
+     * do carro no Estacionamento ao interagir com o Atendente
+     * @author Bernardo Dirceu Tomasi
      * @author Camila Florão Barcellos
      */
     public void run() {
         try {
-            System.out.println("-> Carro"+this.getName()+" chegou ao estacionamento");
+            System.out.println("-> Carro "+this.getName()+" chegou ao estacionamento");
             while(estacionamento.getAtendente().getOcupado()) {
                 wait();
             }

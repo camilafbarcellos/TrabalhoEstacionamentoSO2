@@ -1,29 +1,26 @@
 package monitores_semaforos;
 
-/**A Classe Atendente realizá o papel de intermediario entre as Threand Carro e Estacionamento
+/**Classe intermediária entre a Thread Carro e a Classe Estacionamento
  * @author Bernardo Dirceu Tomasi
  * @author Camila Florão Barcellos
- * @version 1.0
- * @since Release 01 da aplicação
  */
 public class Atendente extends Thread {
 
-    //private Estacionamento vaga;
-    //private Carro carro;
     private Boolean trabalhando;
     private Boolean ocupado;
     private String nome;
     private Boolean recebendo;
 
-    /**Método construtor que define a variável trabalhando como 'false'
+    /**Método construtor que inicializa os status de trabalho, recebimento e
+     * ocupação em falso e também o nome do atendente
      * @author Bernardo Dirceu Tomasi
-     * @param trabalhando Boolean - Indica estado do atendente
+     * @author Camila Florão Barcellos
      */
     public Atendente() {
         trabalhando = false;
-        nome = "Bartolomeu";
         recebendo = false;
         ocupado = false;
+        nome = "Bartolomeu";
         
         System.out.println("\n-- STATUS DO ATENDENTE --"
                         + "\nNome: " + nome
@@ -32,17 +29,16 @@ public class Atendente extends Thread {
                         + "\n");
     }
 
-    /**Método que realiza a comunicação entre a Threand Carro e Estacionamento
+    /**Método que realiza a comunicação entre a Thread Carro e Estacionamento
      * para estabelecer a relação de ocupação de uma vaga
+     * @param estacionamento Estacionamento - Indica o estacionamento ocupado
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
     public synchronized void chamarAtendente(Estacionamento estacionamento, Carro carro) {
         try {
-            //this.carro = carro;
-
             /*
-        Se for o primeiro carro a entrar ou se por ventura o estacionamento ficou vazio e o atendente dormiu, será
-        necessário imprimir no terminal que ele voltou a trabalhar
+                Se for o primeiro carro a entrar ou se por ventura o estacionamento ficou vazio e o atendente dormiu, será
+                necessário imprimir no terminal que ele voltou a trabalhar
              */
             if (trabalhando == false) {
                 trabalhando = true;
@@ -67,6 +63,11 @@ public class Atendente extends Thread {
         }
     }
     
+    /**Método que realiza a comunicação entre a Thread Carro e Estacionamento
+     *para estabelecer a relação de desocupação de uma vaga
+     * @param estacionamento Estacionamento - Indica o estacionamento ocupado
+     * @param carro Carro - Indica qual carro está fazendo o pedido
+     */
     public synchronized void chamarAtendenteDesocupar(Estacionamento estacionamento, Carro carro) {
         try {
 
@@ -83,57 +84,57 @@ public class Atendente extends Thread {
         }
     }
 
-    /**
-     * @return the trabalhando
+    /**Método de retorno do status de trabalho
+     * @return trabalhando - Indica se está trabalhando ou não
      */
     public Boolean getTrabalhando() {
         return trabalhando;
     }
 
-    /**
-     * @param trabalhando the trabalhando to set
+    /**Método de atribuição do status de trabalho
+     * @param trabalhando Boolean - Indica se está trabalhando ou não
      */
     public void setTrabalhando(Boolean trabalhando) {
         this.trabalhando = trabalhando;
     }
 
-    /**
-     * @return the ocupado
+    /**Método de retorno do status de ocupação
+     * @return ocupado - Indica se está ocupado ou não
      */
     public Boolean getOcupado() {
         return ocupado;
     }
 
-    /**
-     * @param ocupado the ocupado to set
+    /**Método de atribuição do status de ocupação
+     * @param ocupado Boolean - Indica se está ocupado ou não
      */
     public void setOcupado(Boolean ocupado) {
         this.ocupado = ocupado;
     }
 
-    /**
-     * @return the nome
+    /**Método de retorno do nome
+     * @return nome - Nome do atendente
      */
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
+    /**Método de atribuição do nome
+     * @param nome String - Nome do atendente
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the recebendo
+    /**Método de retorno do status de recebimento de salário
+     * @return recebendo - Indica se está recebendo ou não
      */
     public Boolean getRecebendo() {
         return recebendo;
     }
 
-    /**
-     * @param recebendo the recebendo to set
+    /**Método de retorno do status de recebimento de salário
+     * @param recebendo Boolean - Indica se está recebendo ou não
      */
     public void setRecebendo(Boolean recebendo) {
         this.recebendo = recebendo;
