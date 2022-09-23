@@ -263,4 +263,3 @@ public class Atendente extends Thread {
         this.vagaBool = vagaBool;
     }
 }
-
