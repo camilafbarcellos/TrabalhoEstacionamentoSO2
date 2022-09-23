@@ -9,7 +9,7 @@ import java.util.Random;
 public class Main {
 
     /**Método principal de execução do sistema de estacionamento utilizando
-     * monitores/semáforos
+     * monitores
      * @param args - Bloco de comandos
      * @throws Exception - Tratamento de exceção
      */
@@ -30,24 +30,19 @@ public class Main {
         //Incializa o random
         Random gerador = new Random();
 
-        //Variáveis criadas para a thread carro
-        int num = 0;
-        String placa;
-        int vaga = 0;
-
         //Gera 50 carros
         for (int i = 0; i < 50; i++) {
 
             //Número da placa
-            num = gerador.nextInt(900) + 100;
+            int num = gerador.nextInt(900) + 100;
 
             //Converte o número para String
             Integer.toString(num);
             //Adiciona o número a placa
-            placa = "ABC" + num;
+            String placa = "ABC" + num;
 
             //Gera um número aleatório para a vaga
-            vaga = gerador.nextInt(12);
+            int vaga = gerador.nextInt(12);
 
             //Cria e inciializa a thread carro
             Carro carro_i = new Carro(placa, estacionamento);

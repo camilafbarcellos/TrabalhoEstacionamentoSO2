@@ -7,7 +7,7 @@ package monitores_semaforos;
  */
 public class Estacionamento {
 
-    private Boolean vag[] = new Boolean[13];
+    private Boolean vagaBool[] = new Boolean[13];
 
     int i = 0;
     
@@ -23,7 +23,7 @@ public class Estacionamento {
         this.atendente = atendente;
         
         for (i = 1; i <= 12; i++) {
-            vag[i] = false;
+            vagaBool[i] = false;
         }
     }
 
@@ -56,17 +56,17 @@ public class Estacionamento {
     }
     
     /**Método de retorno do controle de ocupação da vaga
-     * @return vag - Indica ocupação da vaga i
+     * @return vagaBool - Indica ocupação da vaga
      */
-    public Boolean[] getVag() {
-        return vag;
+    public Boolean[] getVagaBool() {
+        return vagaBool;
     }
 
     /**Método de atribuição do controle de ocupação da vaga
-     * @param vag Boolean - Indica ocupação da vaga i
+     * @param vagaBool Boolean - Indica ocupação da vaga
      */
-    public void setVag(Boolean[] vag) {
-        this.vag = vag;
+    public void setVagaBool(Boolean[] vagaBool) {
+        this.vagaBool = vagaBool;
     }
     
     /**Método sicronizado para o carro ocupar uma vaga no estacionamento
@@ -78,7 +78,7 @@ public class Estacionamento {
     public synchronized void ocupar(Estacionamento vaga, Carro carro) {
         try {
             for (i = 1; i <= 12; i++) {
-                if (vaga.vag[i] == false) {
+                if (vaga.vagaBool[i] == false) {
                     vaga.quant_vagas = vaga.quant_vagas - 1;
                     
                     carro.setVaga_ocupada(i);
@@ -87,14 +87,14 @@ public class Estacionamento {
                             + " ocupou a vaga " + carro.getVaga_ocupada()
                             + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --");
 
-                    this.vag[i] = true;
+                    this.vagaBool[i] = true;
 
                     return;
-                } else if (i == 12 && vaga.vag[12] == true) {
+                } else if (i == 12 && vaga.vagaBool[12] == true) {
                     System.out.println("\n-- ESTACIONAMENTO CHEIO! --\n"
-                            + "-> Carro " + carro.getName() + " indo EMBORA...\n\n");
+                            + "-> Carro " + carro.getName() + " indo EMBORA...\n");
 
-                    carro.setVaga_ocupada(-100);
+                    carro.setVaga_ocupada(0);
                 }
             }
         } catch(Exception e) {
@@ -116,13 +116,11 @@ public class Estacionamento {
 
                     System.out.println("\n-> Carro " + carro.getName()
                             + " desocupou a vaga " + carro.getVaga_ocupada()
-                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --");
+                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --\n");
 
-                    carro.setVaga_ocupada(-100);
+                    carro.setVaga_ocupada(0);
                     
-                    System.out.println("\n");
-                    
-                    this.vag[i] = false;
+                    this.vagaBool[i] = false;
                 }
             }
 

@@ -10,7 +10,7 @@ public class Carro extends Thread {
     private Estacionamento estacionamento;
 
     /**Método construtor para receber a placa e o estacionamento, definindo
-     * a vaga em -100 como valor simbólico inexistente
+     * a vaga em 0 como valor simbólico inexistente
      * @author Bernardo Dirceu Tomasi
      * @author Camila Florão Barcellos
      * @param placa String - Placa do carro
@@ -19,7 +19,7 @@ public class Carro extends Thread {
     public Carro(String placa, Estacionamento estacionamento) {
         super(placa);
         this.estacionamento = estacionamento;
-        this.vaga_ocupada = -100;
+        this.vaga_ocupada = 0;
     }
     
     /**Método de retorno do estacionamento do carro
@@ -64,7 +64,7 @@ public class Carro extends Thread {
             
             estacionamento.getAtendente().chamarAtendente(estacionamento, this);
             
-            if (vaga_ocupada != (-100)) {
+            if (vaga_ocupada != (0)) {
                 while (estacionamento.getAtendente().getOcupado()) {
                     wait();
                 }

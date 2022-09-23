@@ -31,6 +31,8 @@ public class Atendente extends Thread {
 
     /**Método que realiza a comunicação entre a Thread Carro e Estacionamento
      * para estabelecer a relação de ocupação de uma vaga
+     * @author Bernardo Dirceu Tomasi
+     * @author Camila Florão Barcellos
      * @param estacionamento Estacionamento - Indica o estacionamento ocupado
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
@@ -64,7 +66,9 @@ public class Atendente extends Thread {
     }
     
     /**Método que realiza a comunicação entre a Thread Carro e Estacionamento
-     *para estabelecer a relação de desocupação de uma vaga
+     * para estabelecer a relação de desocupação de uma vaga
+     * @author Bernardo Dirceu Tomasi
+     * @author Camila Florão Barcellos
      * @param estacionamento Estacionamento - Indica o estacionamento ocupado
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
@@ -133,7 +137,7 @@ public class Atendente extends Thread {
         return recebendo;
     }
 
-    /**Método de retorno do status de recebimento de salário
+    /**Método de atribuição do status de recebimento de salário
      * @param recebendo Boolean - Indica se está recebendo ou não
      */
     public void setRecebendo(Boolean recebendo) {
