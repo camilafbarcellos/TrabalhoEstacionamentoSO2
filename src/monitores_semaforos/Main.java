@@ -14,6 +14,11 @@ public class Main {
      * @throws Exception - Tratamento de exceção
      */
     public static void main(String[] args) throws Exception {
+        
+        System.out.println(". . . . . . . . . . . . . . . .\n" +
+                           ". Bem-vindo ao estacionamento .\n" +
+                           ".        Estacione Bem        .\n" +
+                           ". . . . . . . . . . . . . . . .\n");
 
         //Cria e inicializa a thread atendente
         Atendente atendente = new Atendente();
@@ -25,7 +30,8 @@ public class Main {
         //Garante que a thread atendente será a primeira a ser inicializada
         Thread.sleep(3000);
 
-        System.out.println("\nSISTEMA INICIALIZADO: ATENDENTE E ESTACIONAMENTO CRIADOS\n");
+        System.out.println("SISTEMA INICIALIZADO: ATENDENTE E ESTACIONAMENTO CRIADOS"
+                + "\nIMPLEMENTAÇÃO: MONITORES");
 
         //Incializa o random
         Random gerador = new Random();

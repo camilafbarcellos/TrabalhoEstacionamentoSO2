@@ -30,7 +30,7 @@ public class Carro extends Thread {
     public void run() {
         try {
 
-            System.out.println("-> Carro " + this.getName() + " chegou ao estacionamento");
+            System.out.println("\n-> Carro " + this.getName() + " chegou ao estacionamento");
 
             atendente.chamarAtendente(this);
 

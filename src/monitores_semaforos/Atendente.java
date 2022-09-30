@@ -21,12 +21,20 @@ public class Atendente extends Thread {
         recebendo = false;
         ocupado = false;
         nome = "Bartolomeu";
-        
-        System.out.println("\n-- STATUS DO ATENDENTE --"
+    }
+    
+    /**Método de execução da thread que exibe as informações
+     * do atendente no momento da inicialização
+     * @author Bernardo Dirceu Tomasi
+     * @author Camila Florão Barcellos
+     */
+    public void run() {
+        System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
                         + "\nNome: " + nome
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
-                        + "\n");
+                        + "\n. . . . . . . . . . . . . . . .\n");
     }
 
     /**Método que realiza a comunicação entre a Thread Carro e Estacionamento
@@ -45,11 +53,11 @@ public class Atendente extends Thread {
             if (trabalhando == false) {
                 trabalhando = true;
                 recebendo = true;
-                System.out.println("\n-- STATUS DO ATENDENTE --"
-                        + "\nNome: " + nome
+                System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
-                        + "\n");
+                        + "\n. . . . . . . . . . . . . . . .");
             }
             
             setOcupado((Boolean) true);

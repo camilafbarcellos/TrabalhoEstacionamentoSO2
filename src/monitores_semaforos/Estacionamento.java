@@ -91,8 +91,8 @@ public class Estacionamento {
 
                     return;
                 } else if (i == 12 && vaga.vagaBool[12] == true) {
-                    System.out.println("\n-- ESTACIONAMENTO CHEIO! --\n"
-                            + "-> Carro " + carro.getName() + " indo EMBORA...\n");
+                    System.out.println("-- ESTACIONAMENTO CHEIO! --\n"
+                            + "-> Carro " + carro.getName() + " indo EMBORA...");
 
                     carro.setVaga_ocupada(0);
                 }
@@ -116,7 +116,7 @@ public class Estacionamento {
 
                     System.out.println("\n-> Carro " + carro.getName()
                             + " desocupou a vaga " + carro.getVaga_ocupada()
-                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --\n");
+                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + vaga.getQuant_vagas() + " --");
 
                     carro.setVaga_ocupada(0);
                     
@@ -128,10 +128,11 @@ public class Estacionamento {
                 System.out.println("\n-- ESTACIONAMENTO VAZIO! --\n");
                 atendente.setTrabalhando(false);
                 atendente.setRecebendo(false);
-                System.out.println("\n-- STATUS DO ATENDENTE --"
+                System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
                         + "\nTrabalhando: " + atendente.getTrabalhando()
                         + "\nRecebendo: " + atendente.getRecebendo()
-                        + "\n");
+                        + "\n. . . . . . . . . . . . . . . .");
             }
 
             notifyAll(); // notifica as threads

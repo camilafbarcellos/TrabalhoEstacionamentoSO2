@@ -36,12 +36,6 @@ public class Atendente extends Thread {
 
             this.vagaBQ = vagaBQ;
 
-            System.out.println("\n-- STATUS DO ATENDENTE --"
-                    + "\nNome: " + nome
-                    + "\nTrabalhando: " + trabalhando
-                    + "\nRecebendo: " + recebendo
-                    + "\n");
-
             for (int i = 1; i <= 12; i++) {
                 vagaBool[i] = false;
             }
@@ -73,6 +67,13 @@ public class Atendente extends Thread {
                 e.printStackTrace();
             }
         }
+        
+        System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nNome: " + nome
+                        + "\nTrabalhando: " + trabalhando
+                        + "\nRecebendo: " + recebendo
+                        + "\n. . . . . . . . . . . . . . . .\n");
     }
 
     /**Método que realiza a comunicação com a Thread Carro
@@ -86,11 +87,11 @@ public class Atendente extends Thread {
             if (getTrabalhando() == false) {
                 setTrabalhando((Boolean) true);
                 setRecebendo((Boolean) true);
-                System.out.println("\n-- STATUS DO ATENDENTE --"
-                        + "\nNome: " + getNome()
-                        + "\nTrabalhando: " + getTrabalhando()
-                        + "\nRecebendo: " + getRecebendo()
-                        + "\n");
+                System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nTrabalhando: " + trabalhando
+                        + "\nRecebendo: " + recebendo
+                        + "\n. . . . . . . . . . . . . . . .");
             }
 
             ocupado = true;
@@ -109,8 +110,8 @@ public class Atendente extends Thread {
 
                     return;
                 } else if (i == 12 && getVagaBool()[12] == true) {
-                    System.out.println("\n-- ESTACIONAMENTO CHEIO! --\n"
-                            + "-> Carro " + carro.getName() + " indo EMBORA...\n");
+                    System.out.println("-- ESTACIONAMENTO CHEIO! --\n"
+                            + "-> Carro " + carro.getName() + " indo EMBORA...");
 
                     carro.vaga = null;
                 }
@@ -140,7 +141,7 @@ public class Atendente extends Thread {
 
                     System.out.println("\n-> Carro " + carro.getName()
                             + " desocupou a vaga " + carro.vaga.getNumero()
-                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + getQuant_vagas() + " --\n");
+                            + "\n-- QUANTIDADE DE VAGAS DISPONÍVEL: " + getQuant_vagas() + " --");
 
                     this.vagaBQ.put(carro.vaga);
 
@@ -152,10 +153,11 @@ public class Atendente extends Thread {
                 System.out.println("\n-- ESTACIONAMENTO VAZIO! --\n");
                 setTrabalhando(false);
                 setRecebendo(false);
-                System.out.println("\n-- STATUS DO ATENDENTE --"
-                        + "\nTrabalhando: " + getTrabalhando()
-                        + "\nRecebendo: " + getRecebendo()
-                        + "\n");
+                System.out.println(". . . . . . . . . . . . . . . ."
+                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nTrabalhando: " + trabalhando
+                        + "\nRecebendo: " + recebendo
+                        + "\n. . . . . . . . . . . . . . . .");
             }
 
             ocupado = false;
