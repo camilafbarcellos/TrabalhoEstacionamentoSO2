@@ -64,11 +64,12 @@ public class Carro extends Thread {
             
             estacionamento.getAtendente().chamarAtendente(estacionamento, this);
             
-            if (vaga_ocupada != (0)) {
+            if (vaga_ocupada != 0) {
+                sleep((long) (Math.random() * 10000));
                 while (estacionamento.getAtendente().getOcupado()) {
                     wait();
                 }
-                sleep((long) (Math.random() * 10000));
+                
                 estacionamento.getAtendente().chamarAtendenteDesocupar(estacionamento, this);
             }
             

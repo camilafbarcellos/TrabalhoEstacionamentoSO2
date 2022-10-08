@@ -30,7 +30,7 @@ public class Atendente extends Thread {
      */
     public void run() {
         System.out.println(". . . . . . . . . . . . . . . ."
-                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nSTATUS DO ATENDENTE:"
                         + "\nNome: " + nome
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
@@ -54,7 +54,7 @@ public class Atendente extends Thread {
                 trabalhando = true;
                 recebendo = true;
                 System.out.println(". . . . . . . . . . . . . . . ."
-                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nSTATUS DO ATENDENTE: ACORDADO"
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
                         + "\n. . . . . . . . . . . . . . . .");

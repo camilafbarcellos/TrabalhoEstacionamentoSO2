@@ -129,7 +129,7 @@ public class Estacionamento {
                 atendente.setTrabalhando(false);
                 atendente.setRecebendo(false);
                 System.out.println(". . . . . . . . . . . . . . . ."
-                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nSTATUS DO ATENDENTE: DORMINDO"
                         + "\nTrabalhando: " + atendente.getTrabalhando()
                         + "\nRecebendo: " + atendente.getRecebendo()
                         + "\n. . . . . . . . . . . . . . . .");

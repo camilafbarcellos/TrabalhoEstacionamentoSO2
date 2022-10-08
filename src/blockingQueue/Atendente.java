@@ -88,7 +88,7 @@ public class Atendente extends Thread {
                 setTrabalhando((Boolean) true);
                 setRecebendo((Boolean) true);
                 System.out.println(". . . . . . . . . . . . . . . ."
-                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nSTATUS DO ATENDENTE: ACORDADO"
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
                         + "\n. . . . . . . . . . . . . . . .");
@@ -154,7 +154,7 @@ public class Atendente extends Thread {
                 setTrabalhando(false);
                 setRecebendo(false);
                 System.out.println(". . . . . . . . . . . . . . . ."
-                        + "\nSTATUS DO ATENDENTE: "
+                        + "\nSTATUS DO ATENDENTE: DORMINDO"
                         + "\nTrabalhando: " + trabalhando
                         + "\nRecebendo: " + recebendo
                         + "\n. . . . . . . . . . . . . . . .");
