@@ -82,7 +82,7 @@ public class Atendente extends Thread {
      * @author Camila Florão Barcellos
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
-    public void chamarAtendente(Carro carro) {
+    public synchronized void chamarAtendente(Carro carro) {
         try {
             if (getTrabalhando() == false) {
                 setTrabalhando((Boolean) true);
@@ -130,7 +130,7 @@ public class Atendente extends Thread {
      * @author Camila Florão Barcellos
      * @param carro Carro - Indica qual carro está fazendo o pedido
      */
-    public void chamarAtendenteDesocupar(Carro carro) {
+    public synchronized void chamarAtendenteDesocupar(Carro carro) {
         try {
 
             ocupado = true;
