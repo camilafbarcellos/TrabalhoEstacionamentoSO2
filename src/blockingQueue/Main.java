@@ -48,9 +48,6 @@ public class Main {
             //Adiciona o número a placa
             String placa = "ABC" + num;
 
-            //Gera um número aleatório para a vaga
-            int vaga = gerador.nextInt(12);
-
             //Cria e inciializa a thread carro
             Carro carro_i = new Carro(placa, atendente);
             carro_i.start();

@@ -109,7 +109,7 @@ public class Atendente extends Thread {
                     this.getVagaBool()[i] = true;
 
                     return;
-                } else if (i == 12 && getVagaBool()[12] == true) {
+                } else if (i == 12) {
                     System.out.println("-- ESTACIONAMENTO CHEIO! --\n"
                             + "-> Carro " + carro.getName() + " indo EMBORA...");
 

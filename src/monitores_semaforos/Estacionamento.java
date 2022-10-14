@@ -90,7 +90,7 @@ public class Estacionamento {
                     this.vagaBool[i] = true;
 
                     return;
-                } else if (i == 12 && vaga.vagaBool[12] == true) {
+                } else if (i == 12) {
                     System.out.println("-- ESTACIONAMENTO CHEIO! --\n"
                             + "-> Carro " + carro.getName() + " indo EMBORA...");
 
